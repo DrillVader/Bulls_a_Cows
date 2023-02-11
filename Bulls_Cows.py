@@ -1,2 +1,2 @@
 print("jde to ?")
-print("zasdssdsdne")
+print("zasdssdsdnsdsdse")
