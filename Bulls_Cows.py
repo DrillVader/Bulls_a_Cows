@@ -25,7 +25,10 @@ def bullscowsgame():
     start_časovač = time.time()
 
     while pokusy < max_pokusy:
-        guess = input("zadejte svůj odhad: ")        
+        guess = input("zadejte svůj odhad: ")   
+        if len(guess) != 4 or not guess.isdigit():
+            print("Invalid input, please enter a 4-digit number")
+            continue    
         cows = 0
         bulls = 0
 
