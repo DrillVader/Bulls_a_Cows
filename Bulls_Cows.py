@@ -4,26 +4,32 @@ author: Vojtěch Junek
 email: vojta.junek@tiscali.cz
 discord: jsemnamol#8198
 """
-
-
-
-
-
 import random
-import time
-
-
+import time    
 
 def generuj_cislo():
     while True:
-        randcislo = random.randint(1000, 9999)
-        str_cislo = str(randcislo)
-        ud = set(str_cislo)
-        if len(ud) != 1:
-            return randcislo
+        rand_number = random.sample(range(1, 10), 4)
+        number = ''.join(map(str, rand_number))
+        if len(set(number)) == 4:
+            return number
 
-def bulls_cows_game():
-    #vygenerujeme nahodne 4 ciferne cislo
+def odhad_kontrola():
+    while True:
+        odhad = input("zadejte svůj odhad. Číslo musí mít 4 číslice a nesmí začínat 0: ")
+        if len(odhad) != 4:
+            print("špatný formát. Zadejte číslo o 4 číslicích.")
+            continue
+        elif odhad[0] == '0':
+            print("špatný formát. Číslo nemůže začínat nulou.")
+            continue
+        elif not odhad.isdigit():
+            print("špatný formát. Zadejte pouze číslice.")
+            continue
+        else:
+            return odhad     
+
+def bulls_cows_game():    
     cislo = generuj_cislo()    
     print("Vítejte ve hře Bulls and Cows! Vašim cílem je uhodnout čtyř ciferné číslo")
     print("pokud uhodnete číslo, i jeho umístění správně, vypíše se 1 bull")
@@ -35,13 +41,9 @@ def bulls_cows_game():
     start_časovač = time.time()
     
     while pokusy < max_pokusy:
-        odhad = input("zadejte svůj odhad: ")   
-        if not odhad.isdigit() or not (1000 <= int(odhad) <= 9999):
-            print("Špatný formát čísla, zadejte 4 místné číslo nezačínající nulou")
-            continue    
+        odhad = odhad_kontrola()        
         cows = 0
         bulls = 0
-
         cislo_str = str(cislo)
 
         for i in range(4):
@@ -64,6 +66,8 @@ def bulls_cows_game():
                 break
     
 bulls_cows_game()
+
+
 
 
 
